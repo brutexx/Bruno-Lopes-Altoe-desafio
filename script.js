@@ -20,8 +20,10 @@ const THEME_SWITCHER = document.getElementById('theme-switcher');
  * @param {string} dateString - A data no formato ISO.
  * @returns {string} A data formatada.
  */
-// function formatDate(dateString) { ... }
-
+function formatDate(dateString) {
+    // A longo prazo, parece mais fácil de modificar.
+    return new Date(dateString).toLocaleDateString("pt-BR");
+}
 
 // ---
 // MANIPULADORES DE EVENTOS
