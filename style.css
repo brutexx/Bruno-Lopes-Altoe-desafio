@@ -1,13 +1,65 @@
+:root {
+  /* Base */
+  --color-bg: #ffffff;
+  --color-bg-elevated: #f5f5f5;
+  --color-border: #d4d4d4;
+
+  /* Texto */
+  --color-text: #111827;     /* quase-preto */
+  --color-text-muted: #6b7280;
+  --color-text-inverted: #f9fafb;
+
+  /* Acento / Primária */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-soft: #dbeafe;
+
+  /* Semânticas */
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-warning: #d97706;
+
+  /* Misc */
+  --shadow-soft: 0 4px 10px rgba(15, 23, 42, 0.08);
+  --radius-base: 0.5rem;
+}
+
+html[data-theme="dark"] {
+  /* Base */
+  --color-bg: #020617;            /* azul muito escuro/preto */
+  --color-bg-elevated: #111827;   /* fundo de painel */
+  --color-border: #1f2933;
+
+  /* Texto */
+  --color-text: #e5e7eb;          /* cinza claro */
+  --color-text-muted: #9ca3af;
+  --color-text-inverted: #020617;
+
+  /* Acento / Primária */
+  --color-primary: #60a5fa;       /* azul mais claro pra bg escuro */
+  --color-primary-hover: #3b82f6;
+  --color-primary-soft: #1d3551;
+
+  /* Semânticas */
+  --color-success: #22c55e;
+  --color-danger: #f97373;
+  --color-warning: #facc15;
+
+  /* Misc */
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.6);
+  --radius-base: 0.5rem;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--color-bg);
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverted);
     padding: 1rem;
     text-align: center;
 }

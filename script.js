@@ -10,6 +10,7 @@ let currentTheme = 'light';
 // SELETORES DO DOM (Constantes - Padrão UPPER_SNAKE_CASE)
 // ---
 const THEME_SWITCHER = document.getElementById('theme-switcher');
+const ROOT = document.documentElement;
 
 // ---
 // FUNÇÕES AUXILIARES 
@@ -33,6 +34,8 @@ function formatDate(dateString) {
  * Lida com o clique no botão de trocar o tema (Light/Dark).
  */
 THEME_SWITCHER.addEventListener('click', () => {
+    ROOT.dataset.theme = ROOT.dataset.theme === "dark" ? "light" : "dark";
+    console.log(ROOT.dataset.theme);
 });
 
 /**
