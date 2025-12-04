@@ -27,7 +27,7 @@
 html[data-theme="dark"] {
   /* Base */
   --color-bg: #020617;            /* azul muito escuro/preto */
-  --color-bg-elevated: #111827;   /* fundo de painel */
+  --color-bg-elevated: #111827;   /* fundo do painel */
   --color-border: #1f2933;
 
   /* Texto */

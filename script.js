@@ -43,24 +43,25 @@ function formatCurrency(currencyNumber) {
  * @param {Object} transaction - A transação com propriedades preenchidas.
  */
 function renderRow(transaction) {
+    const { amount, date, type } = transaction;
     const tr = document.createElement("tr");
 
-    if (transaction.type === "income" || transaction.type === "expense")
-        tr.classList.add(transaction.type);
+    if (type === "income" || type === "expense")
+        tr.classList.add(type);
 
     // Célula de Valor
     const amountTd = document.createElement("td");
-    amountTd.textContent = formatCurrency(transaction.amount);
+    amountTd.textContent = formatCurrency(type === "income" ? amount : -amount);
 
     // Célula de Data
     const dateTd = document.createElement("td");
-    dateTd.textContent = formatDate(transaction.date);
+    dateTd.textContent = formatDate(`${date}T00:00:00-03:00`); // Fuso de brasília
 
     // Célula de Tipo
    const typeTd = document.createElement("td");
-    typeTd.textContent = transaction.type;
+    typeTd.textContent = type;
 
-    // Coloca as células na tabela
+    // Coloca as células na linha
     tr.appendChild(amountTd);
     tr.appendChild(dateTd);
     tr.appendChild(typeTd);
