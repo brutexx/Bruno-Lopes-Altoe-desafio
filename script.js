@@ -23,7 +23,16 @@ const TRANSACTIONS_TABLE = document.getElementById('body-transaction-table');
  * @returns {string} A data formatada.
  */
 function formatDate(dateString) {
-    return new Date(dateString).toLocaleDateString("pt-BR");
+    let date;
+
+    if (!dateString.includes('T')) {
+        const [y, m, d] = dateString.split('-').map(Number);
+        date = new Date(y, m - 1, d);
+    } else {
+        date = new Date(dateString);
+    }
+
+    return date.toLocaleDateString('pt-BR');
 }
 
 /**
@@ -32,9 +41,9 @@ function formatDate(dateString) {
  * @returns {string} O número formatado.
  */
 function formatCurrency(currencyNumber) {
-    return currencyNumber.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
+    return currencyNumber.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
     });
 }
 
@@ -44,21 +53,21 @@ function formatCurrency(currencyNumber) {
  */
 function renderRow(transaction) {
     const { amount, date, type } = transaction;
-    const tr = document.createElement("tr");
+    const tr = document.createElement('tr');
 
-    if (type === "income" || type === "expense")
+    if (type === 'income' || type === 'expense')
         tr.classList.add(type);
 
     // Célula de Valor
-    const amountTd = document.createElement("td");
-    amountTd.textContent = formatCurrency(type === "income" ? amount : -amount);
+    const amountTd = document.createElement('td');
+    amountTd.textContent = formatCurrency(type === 'income' ? amount : -amount);
 
     // Célula de Data
-    const dateTd = document.createElement("td");
-    dateTd.textContent = formatDate(`${date}T00:00:00-03:00`); // Fuso de brasília
+    const dateTd = document.createElement('td');
+    dateTd.textContent = formatDate(date);
 
     // Célula de Tipo
-   const typeTd = document.createElement("td");
+    const typeTd = document.createElement('td');
     typeTd.textContent = type;
 
     // Coloca as células na linha
@@ -77,7 +86,7 @@ function renderRow(transaction) {
  * Lida com o clique no botão de trocar o tema (Light/Dark).
  */
 THEME_SWITCHER.addEventListener('click', () => {
-    ROOT.dataset.theme = ROOT.dataset.theme === "dark" ? "light" : "dark";
+    ROOT.dataset.theme = ROOT.dataset.theme === 'dark' ? 'light' : 'dark';
 });
 
 /**
