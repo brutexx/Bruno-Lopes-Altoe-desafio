@@ -12,7 +12,7 @@
         <button id="theme-switcher">Mudar Tema</button>
     </header>
 
-    <table class="transaction-table" id="body-transaction-table">
+    <table class="transaction-table" id="main-transaction-table">
         <tr>
             <th>Valor</th>
             <th>Data</th>
@@ -20,36 +20,36 @@
         </tr>
     </table>
 
-    <form class="form">
+    <form class="form" id="main-form">
         <h2 class="form__title">Nova linha</h2>
 
         <div class="form__group">
             <label class="form__label">Descrição</label>
-            <input class="form__input" required name="Descrição" type="text" />
+            <input class="form__input" required name="description" type="text" />
         </div>
 
         <div class="form__group">
             <label class="form__label">Valor</label>
-            <input class="form__input" required name="Valor" type="number" min="0.01" />
+            <input class="form__input" required name="amount" type="number" min="0.01" step="any" />
         </div>
 
         <fieldset class="form__group">
             <legend>Tipo</legend>
 
             <label class="form__label">
-                <input class="form__option" required name="Tipo" type="radio" value="income" />
+                <input class="form__option" required name="type" type="radio" value="income" />
                 Entrada
             </label>
 
             <label class="form__label">
-                <input class="form__option" required name="Tipo" type="radio" value="expense" />
+                <input class="form__option" required name="type" type="radio" value="expense" />
                 Saída
             </label>
         </fieldset>
 
         <div class="form__group">
             <label class="form__label">Data</label>
-            <input class="form__input" required name="Data" type="date" />
+            <input class="form__input" required name="date" type="date" />
         </div>
 
         <button type="submit" class="form__button">Enviar</button>

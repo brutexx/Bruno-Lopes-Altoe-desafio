@@ -11,7 +11,8 @@ let currentTheme = 'light';
 // ---
 const THEME_SWITCHER = document.getElementById('theme-switcher');
 const ROOT = document.documentElement;
-const TRANSACTIONS_TABLE = document.getElementById('body-transaction-table');
+const TRANSACTIONS_TABLE = document.getElementById('main-transaction-table');
+const FORM = document.getElementById("main-form");
 
 // ---
 // FUNÇÕES AUXILIARES 
@@ -51,7 +52,7 @@ function formatCurrency(currencyNumber) {
  * Coloca uma transação na tabela de transações (tela principal).
  * @param {Object} transaction - A transação com propriedades preenchidas.
  */
-function renderRow(transaction) {
+function addTransactionRow(transaction) {
     const { amount, date, type } = transaction;
     const tr = document.createElement('tr');
 
@@ -89,11 +90,19 @@ THEME_SWITCHER.addEventListener('click', () => {
     ROOT.dataset.theme = ROOT.dataset.theme === 'dark' ? 'light' : 'dark';
 });
 
+FORM.addEventListener('submit', (event) => {
+    // Página não recarrega
+    event.preventDefault();
+    const formData = new FormData(FORM);
+    const transaction = Object.fromEntries(formData.entries());
+    addTransactionRow(transaction);
+});
+
 /**
  * Função de inicialização da aplicação. A "main"
  */
 function init() {
-    transactions.forEach(renderRow);
+    transactions.forEach(addTransactionRow);
 }
 
 // Inicia a aplicação
