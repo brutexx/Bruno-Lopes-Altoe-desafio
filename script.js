@@ -14,6 +14,7 @@ const ROOT = document.documentElement;
 const TRANSACTIONS_TABLE_BODY = document.getElementById('transaction-table-body');
 const FORM = document.getElementById("main-form");
 const SEARCH_INPUT = document.getElementById("transaction-table-search-input");
+const SELECT_INPUT = document.getElementById("transaction-table-select-input");
 
 // ---
 // FUNÇÕES AUXILIARES 
@@ -113,15 +114,23 @@ SEARCH_INPUT.addEventListener('input', () => {
     const query = SEARCH_INPUT.value.toLowerCase().trim();
     const rows = TRANSACTIONS_TABLE_BODY.querySelectorAll("tr");
 
-    console.log(rows);
-
     rows.forEach(row => {
+        // A coluna usada para filtragem tem a classe "data-search-target"
         const cell = row.querySelector('[data-search-target]');
         const cellText = cell.textContent.toLowerCase();
         const matches = cellText.includes(query);
 
         row.classList.toggle('hidden', !matches);
     });
+});
+
+/**
+ * Lida com a ordenação das linhas na tabela.
+ */
+SELECT_INPUT.addEventListener('change', () => {
+    const selected = SELECT_INPUT.value;
+    const rows = TRANSACTIONS_TABLE_BODY.querySelectorAll("tr");
+
 });
 
 /**

@@ -9,7 +9,7 @@
 :root {
   /* Base */
   --color-bg: #ffffff;
-  --color-bg-elevated: #f5f5f5;
+  --color-bg-hover: #f5f5f5;
   --color-border: #d4d4d4;
   --color-border-light:   #e5e7eb;
 
@@ -37,7 +37,7 @@
 html[data-theme="dark"] {
   /* Base */
   --color-bg: #020617;            /* azul muito escuro/preto */
-  --color-bg-elevated: #111827;   /* fundo do painel */
+  --color-bg-hover: #111827;  
   --color-border: #1f2933;
   --color-border-light:    #374151;
 
@@ -101,6 +101,11 @@ button {
 button:hover {
     transform: translateY(-1px);
     opacity: 0.96;
+}
+
+select:hover,
+input:hover {
+    background-color: var(--color-bg-hover);
 }
 
 /* Para o símbolo do calendário poder ser visto */
@@ -188,10 +193,25 @@ input[type="date"] {
 }
 
 /* ========================================
+   Controles
+   ======================================== */
+
+.transaction-table-controls {
+    display: flex;
+    gap: 0.5rem; /* Espaço entre search e select */
+}
+
+/* ========================================
    Barra de procura
    ======================================== */
 
+/* Grupo: label + input de procura  */
 .transaction-table-search {
+    flex: 1;
+}
+
+.transaction-table-search-input,
+.transaction-table-select-input {
   margin-bottom: 16px;
   width: 100%;
   padding: 6px 8px;
@@ -202,7 +222,8 @@ input[type="date"] {
   font: inherit;
 }
 
-.transaction-table-title {
+.transaction-table-search-title,
+.transaction-table-select-title {
     font-weight: 600;
     margin-bottom: 4px;
 }

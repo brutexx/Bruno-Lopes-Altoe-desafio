@@ -13,7 +13,7 @@
     </header>
 
     <form class="form" id="main-form">
-        <h2 class="form__title">Nova linha</h2>
+        <h2 class="form__title">Nova transação</h2>
 
         <div class="form__group">
             <label class="form__label">Descrição</label>
@@ -48,9 +48,19 @@
     </form>
 
     <section class="transaction-table-section">
-        <div class="transaction-table-header">
-            <div class="transaction-table-title">Transações</div>
-            <input class="transaction-table-search" id="transaction-table-search-input" type="search" placeholder="Insira alguma descrição..." />
+        <div class="transaction-table-controls">
+            <div class="transaction-table-search">
+                <div class="transaction-table-search-title">Transações</div>
+                <input class="transaction-table-search-input" id="transaction-table-search-input" type="search" placeholder="Insira alguma descrição..." />
+            </div>
+
+            <div class="transaction-table-select-group">
+                <div class="transaction-table-select-title">Ordenar</div>
+                <select class="transaction-table-select-input" id="transaction-table-select-input">
+                    <option name="date-desc">Mais recente</option>
+                    <option name="value-desc">Maior valor</option>
+                </select>
+            </div>
         </div>
 
         <table class="transaction-table">
