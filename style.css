@@ -11,6 +11,7 @@
   --color-bg: #ffffff;
   --color-bg-elevated: #f5f5f5;
   --color-border: #d4d4d4;
+  --color-border-light:   #e5e7eb;
 
   /* Texto */
   --color-text: #111827;     /* quase-preto */
@@ -29,8 +30,8 @@
 
   /* Tabela */
   --color-card:     #ffffff;
-  --color-border:   #d1d5db;
   --color-input-bg: #ffffff;
+  --border-size: 2px;
 }
 
 html[data-theme="dark"] {
@@ -38,6 +39,7 @@ html[data-theme="dark"] {
   --color-bg: #020617;            /* azul muito escuro/preto */
   --color-bg-elevated: #111827;   /* fundo do painel */
   --color-border: #1f2933;
+  --color-border-light:    #374151;
 
   /* Texto */
   --color-text: #e5e7eb;          /* cinza claro */
@@ -56,38 +58,7 @@ html[data-theme="dark"] {
 
   /* Misc */
   --color-card:      #020617;
-  --color-border:    #1f2937;
   --color-input-bg:  #020617;
-}
-
-th, td {
-    color: var(--color-text);
-}
-
-.transaction-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: system-ui, sans-serif;
-}
-
-.transaction-table th,
-.transaction-table td {
-  padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid var(--color-border);
-  text-align: left;
-}
-
-.transaction-table thead {
-  background: var(--color-primary);
-  font-weight: 600;
-}
-
-.transaction-table tr.income {
-    border-left: 4px solid var(--color-income);
-}
-
-.transaction-table tr.expense {
-    border-left: 4px solid var(--color-expense);
 }
 
 header {
@@ -95,16 +66,55 @@ header {
     color: var(--color-text-inverted);
     padding: 1rem;
     text-align: center;
+    width: 100%;
 }
 
 body {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding-bottom: 24px;
+
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--color-bg);
   color: var(--color-text);
 }
+
+button {
+    border: 2px solid var(--color-primary-soft);
+    cursor: pointer;
+    font: inherit;
+
+    /* Layout */
+    display: inline-flex; /* Bônus: fica centralizado */
+    justify-content: center;
+
+    /* Look */
+    padding: 0.55rem 1.2rem;
+    border-radius: 999px;
+
+    background-color: var(--color-primary);
+    color: var(--color-text-inverted);
+}
+
+button:hover {
+    transform: translateY(-1px);
+    opacity: 0.96;
+}
+
+/* Para o símbolo do calendário poder ser visto */
+input[type="date"] {
+    background-color: var(--color-primary-soft);
+}
+
+.hidden {
+  display: none;
+}
+
+/* ========================================
+   Formulário 
+   ======================================== */
 
 /* Cartão form centralizado */
 .form {
@@ -119,7 +129,7 @@ body {
   
   padding: 20px 16px;
   background: var(--color-card);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-light);
   border-radius: 10px;
 }
 
@@ -129,9 +139,9 @@ body {
   font-size: 1.25rem;
 }
 
-/* Group: label + input empilhados */
-.form__group {
-  
+/* Fieldset (grupo dos Radios) */
+.form__fieldset {
+    border: 1px solid var(--color-border-light);
 }
 
 /* Labels e legends compartilham o mesmo visual */
@@ -147,7 +157,7 @@ body {
   width: 100%;
   padding: 6px 8px;
   border-radius: 6px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-light);
   background: var(--color-input-bg);
   color: var(--color-text);
   font: inherit;
@@ -175,4 +185,57 @@ body {
   color: var(--color-text-inverted);
   font: inherit;
   cursor: pointer;
+}
+
+/* ========================================
+   Barra de procura
+   ======================================== */
+
+.transaction-table-search {
+  margin-bottom: 16px;
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-light);
+  background: var(--color-input-bg);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.transaction-table-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/* ========================================
+   Tabela (Lista)
+   ======================================== */
+
+.transaction-table {
+  min-width: 420px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 999px;
+  border-collapse: collapse;
+  font-family: system-ui, sans-serif;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border-light);
+  text-align: left;
+}
+
+.transaction-table thead {
+  background: var(--color-primary);
+  color: var(--color-text-inverted);
+  font-weight: 600;
+}
+
+.transaction-table tr.income {
+    box-shadow: inset 4px 0 0 var(--color-income);
+}
+
+.transaction-table tr.expense {
+    box-shadow: inset 4px 0 0 var(--color-expense);
 }

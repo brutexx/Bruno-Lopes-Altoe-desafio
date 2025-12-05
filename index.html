@@ -12,14 +12,6 @@
         <button id="theme-switcher">Mudar Tema</button>
     </header>
 
-    <table class="transaction-table" id="main-transaction-table">
-        <tr>
-            <th>Valor</th>
-            <th>Data</th>
-            <th>Tipo</th>
-        </tr>
-    </table>
-
     <form class="form" id="main-form">
         <h2 class="form__title">Nova linha</h2>
 
@@ -33,8 +25,8 @@
             <input class="form__input" required name="amount" type="number" min="0.01" step="any" />
         </div>
 
-        <fieldset class="form__group">
-            <legend>Tipo</legend>
+        <fieldset class="form__fieldset">
+            <legend class="form__label">Tipo</legend>
 
             <label class="form__label">
                 <input class="form__option" required name="type" type="radio" value="income" />
@@ -54,6 +46,25 @@
 
         <button type="submit" class="form__button">Enviar</button>
     </form>
+
+    <section class="transaction-table-section">
+        <div class="transaction-table-header">
+            <div class="transaction-table-title">Transações</div>
+            <input class="transaction-table-search" id="transaction-table-search-input" type="search" placeholder="Insira alguma descrição..." />
+        </div>
+
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody id="transaction-table-body">
+            </tbody>
+        </table>
+    </section>
 
     <script src="script.js" type="module"></script>
 </body>
