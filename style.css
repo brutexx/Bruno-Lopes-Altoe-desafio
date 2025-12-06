@@ -196,7 +196,7 @@ input[type="date"] {
    Controles
    ======================================== */
 
-.transaction-table-controls {
+.transaction-table__controls {
     display: flex;
     gap: 0.5rem; /* Espaço entre search e select */
 }
@@ -206,12 +206,12 @@ input[type="date"] {
    ======================================== */
 
 /* Grupo: label + input de procura  */
-.transaction-table-search {
+.transaction-table__search {
     flex: 1;
 }
 
-.transaction-table-search-input,
-.transaction-table-select-input {
+.transaction-table__search-input,
+.transaction-table__select-input {
   margin-bottom: 16px;
   width: 100%;
   padding: 6px 8px;
@@ -222,8 +222,8 @@ input[type="date"] {
   font: inherit;
 }
 
-.transaction-table-search-title,
-.transaction-table-select-title {
+.transaction-table__search-title,
+.transaction-table__select-title {
     font-weight: 600;
     margin-bottom: 4px;
 }

@@ -11,10 +11,10 @@ let currentTheme = 'light';
 // ---
 const THEME_SWITCHER = document.getElementById('theme-switcher');
 const ROOT = document.documentElement;
-const TRANSACTIONS_TABLE_BODY = document.getElementById('transaction-table-body');
+const TRANSACTIONS_TABLE_BODY = document.getElementById('transaction-table__body');
 const FORM = document.getElementById("main-form");
-const SEARCH_INPUT = document.getElementById("transaction-table-search-input");
-const SELECT_INPUT = document.getElementById("transaction-table-select-input");
+const SEARCH_INPUT = document.getElementById("transaction-table__search-input");
+const SELECT_INPUT = document.getElementById("transaction-table__select-input");
 
 // ---
 // FUNÇÕES AUXILIARES 

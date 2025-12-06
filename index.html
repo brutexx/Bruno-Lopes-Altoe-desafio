@@ -12,70 +12,71 @@
         <button id="theme-switcher">Mudar Tema</button>
     </header>
 
-    <form class="form" id="main-form">
-        <h2 class="form__title">Nova transação</h2>
+    <section class="">
+        <form class="form" id="main-form">
+            <h2 class="form__title">Nova transação</h2>
 
-        <div class="form__group">
-            <label class="form__label">Descrição</label>
-            <input class="form__input" required name="description" type="text" />
-        </div>
-
-        <div class="form__group">
-            <label class="form__label">Valor</label>
-            <input class="form__input" required name="amount" type="number" min="0.01" step="any" />
-        </div>
-
-        <fieldset class="form__fieldset">
-            <legend class="form__label">Tipo</legend>
-
-            <label class="form__label">
-                <input class="form__option" required name="type" type="radio" value="income" />
-                Entrada
-            </label>
-
-            <label class="form__label">
-                <input class="form__option" required name="type" type="radio" value="expense" />
-                Saída
-            </label>
-        </fieldset>
-
-        <div class="form__group">
-            <label class="form__label">Data</label>
-            <input class="form__input" required name="date" type="date" />
-        </div>
-
-        <button type="submit" class="form__button">Enviar</button>
-    </form>
-
-    <section class="transaction-table-section">
-        <div class="transaction-table-controls">
-            <div class="transaction-table-search">
-                <div class="transaction-table-search-title">Transações</div>
-                <input class="transaction-table-search-input" id="transaction-table-search-input" type="search" placeholder="Insira alguma descrição..." />
+            <div class="form__group">
+                <label class="form__label">Descrição</label>
+                <input class="form__input" required name="description" type="text" />
             </div>
 
-            <div class="transaction-table-select-group">
-                <div class="transaction-table-select-title">Ordenar</div>
-                <select class="transaction-table-select-input" id="transaction-table-select-input">
-                    <option value="date-desc">Mais recente</option>
-                    <option value="value-desc">Maior valor</option>
-                </select>
+            <div class="form__group">
+                <label class="form__label">Valor</label>
+                <input class="form__input" required name="amount" type="number" min="0.01" step="any" />
             </div>
-        </div>
 
-        <table class="transaction-table">
-            <thead>
-                <tr>
-                    <th>Valor</th>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                </tr>
-            </thead>
-            <tbody id="transaction-table-body">
-            </tbody>
-        </table>
+            <fieldset class="form__fieldset">
+                <legend class="form__label">Tipo</legend>
+
+                <label class="form__label">
+                    <input class="form__option" required name="type" type="radio" value="income" />
+                    Entrada
+                </label>
+
+                <label class="form__label">
+                    <input class="form__option" required name="type" type="radio" value="expense" />
+                    Saída
+                </label>
+            </fieldset>
+
+            <div class="form__group">
+                <label class="form__label">Data</label>
+                <input class="form__input" required name="date" type="date" />
+            </div>
+
+            <button type="submit" class="form__button">Enviar</button>
+        </form>
+
+        <section class="transaction-table__section">
+            <div class="transaction-table__controls">
+                <div class="transaction-table__search">
+                    <div class="transaction-table__search-title">Transações</div>
+                    <input class="transaction-table__search-input" id="transaction-table__search-input" type="search" placeholder="Insira alguma descrição..." />
+                </div>
+
+                <div class="transaction-table__select-group">
+                    <div class="transaction-table__select-title">Ordenar</div>
+                    <select class="transaction-table__select-input" id="transaction-table__select-input">
+                        <option value="date-desc">Mais recente</option>
+                        <option value="value-desc">Maior valor</option>
+                    </select>
+                </div>
+            </div>
+
+            <table class="transaction-table">
+                <thead>
+                    <tr>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-table__body">
+                </tbody>
+            </table>
+        </section>
     </section>
-
     <script src="script.js" type="module"></script>
 </body>
 </html>
