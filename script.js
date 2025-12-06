@@ -54,10 +54,25 @@ function formatCurrency(currencyNumber) {
 }
 
 /**
+ * Transforma a informação do formulário num objeto de JavaScript.
+ * @param {FormData} formData As informações do formulário preenchidas.
+ * @returns {Object} Objeto seguindo os padrões/tipos de transactions.js.
+ */
+function formatFormData(formData) {
+    return {
+        id: transactions.length + 1,
+        description: formData.get('description'),
+        amount: Number(formData.get('amount')),
+        date: formData.get('date'),
+        type: formData.get('type'),
+    }
+}
+
+/**
  * Coloca uma transação na tabela de transações (tela principal).
  * @param {Object} transaction - A transação com propriedades preenchidas.
  */
-function addTransactionRow(transaction) {
+function renderRow(transaction) {
     const { amount, date, type, description } = transaction;
     const tr = document.createElement('tr');
 
@@ -66,15 +81,17 @@ function addTransactionRow(transaction) {
 
     // Célula de Valor
     const amountTd = document.createElement('td');
+    amountTd.dataset.col = 'amount';
     amountTd.textContent = formatCurrency(type === 'income' ? amount : -amount);
 
     // Célula de Data
     const dateTd = document.createElement('td');
+    dateTd.dataset.col = 'date';
     dateTd.textContent = formatDate(date);
 
     // Célula de Descrição
     const descriptionTd = document.createElement('td');
-    descriptionTd.dataset.searchTarget = ''; // Coluna usada para busca
+    descriptionTd.dataset.col = 'description';
     descriptionTd.textContent = description;
 
     // Coloca as células na linha
@@ -83,6 +100,11 @@ function addTransactionRow(transaction) {
     tr.appendChild(descriptionTd);
 
     TRANSACTIONS_TABLE_BODY.appendChild(tr);
+}
+
+const renderRows = () => {
+    TRANSACTIONS_TABLE_BODY.innerHTML = '';
+    transactions.forEach(renderRow);
 }
 
 // ---
@@ -103,8 +125,10 @@ FORM.addEventListener('submit', (event) => {
     // Página não recarrega
     event.preventDefault();
     const formData = new FormData(FORM);
-    const transaction = Object.fromEntries(formData.entries());
-    addTransactionRow(transaction);
+    const transaction = formatFormData(formData);
+    
+    transactions.push(transaction);
+    renderRow(transaction);
 });
 
 /**
@@ -115,8 +139,7 @@ SEARCH_INPUT.addEventListener('input', () => {
     const rows = TRANSACTIONS_TABLE_BODY.querySelectorAll("tr");
 
     rows.forEach(row => {
-        // A coluna usada para filtragem tem a classe "data-search-target"
-        const cell = row.querySelector('[data-search-target]');
+        const cell = row.querySelector('[data-col="description"]');
         const cellText = cell.textContent.toLowerCase();
         const matches = cellText.includes(query);
 
@@ -129,15 +152,24 @@ SEARCH_INPUT.addEventListener('input', () => {
  */
 SELECT_INPUT.addEventListener('change', () => {
     const selected = SELECT_INPUT.value;
-    const rows = TRANSACTIONS_TABLE_BODY.querySelectorAll("tr");
+    
+    if (selected === 'value-desc')
+        transactions.sort((t1, t2) => {
+            const amountT1 = t1.amount * (t1.type === 'income'? 1 : -1);
+            const amountT2 = t2.amount * (t2.type === 'income'? 1 : -1);
+            return amountT2 - amountT1;
+        });
+    else if (selected === 'date-desc')
+        transactions.sort((t1, t2) => t1.date.localeCompare(t2.date));
 
+    renderRows();
 });
 
 /**
  * Função de inicialização da aplicação. A "main"
  */
 function init() {
-    transactions.forEach(addTransactionRow);
+    transactions.forEach(renderRow);
 }
 
 // Inicia a aplicação
