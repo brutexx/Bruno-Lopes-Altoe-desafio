@@ -102,8 +102,28 @@ function renderRow(transaction) {
     TRANSACTIONS_TABLE_BODY.appendChild(tr);
 }
 
+/**
+ * Ordena as linhas de ```transactions``` usando a escolha atual do usuário.
+ */
+function sortRows() {
+    const selected = SELECT_INPUT.value;
+    
+    if (selected === 'value-desc')
+        transactions.sort((t1, t2) => {
+            const amountT1 = t1.amount * (t1.type === 'income'? 1 : -1);
+            const amountT2 = t2.amount * (t2.type === 'income'? 1 : -1);
+            return amountT2 - amountT1;
+        });
+    else if (selected === 'date-desc')
+        transactions.sort((t1, t2) => t2.date.localeCompare(t1.date));
+}
+
+/**
+ * Renderiza as linhas da tabela ordenadas.
+ */
 const renderRows = () => {
     TRANSACTIONS_TABLE_BODY.innerHTML = '';
+    sortRows();
     transactions.forEach(renderRow);
 }
 
@@ -128,7 +148,7 @@ FORM.addEventListener('submit', (event) => {
     const transaction = formatFormData(formData);
     
     transactions.push(transaction);
-    renderRow(transaction);
+    renderRows();
 });
 
 /**
@@ -150,26 +170,13 @@ SEARCH_INPUT.addEventListener('input', () => {
 /**
  * Lida com a ordenação das linhas na tabela.
  */
-SELECT_INPUT.addEventListener('change', () => {
-    const selected = SELECT_INPUT.value;
-    
-    if (selected === 'value-desc')
-        transactions.sort((t1, t2) => {
-            const amountT1 = t1.amount * (t1.type === 'income'? 1 : -1);
-            const amountT2 = t2.amount * (t2.type === 'income'? 1 : -1);
-            return amountT2 - amountT1;
-        });
-    else if (selected === 'date-desc')
-        transactions.sort((t1, t2) => t1.date.localeCompare(t2.date));
-
-    renderRows();
-});
+SELECT_INPUT.addEventListener('change', renderRows);
 
 /**
  * Função de inicialização da aplicação. A "main"
  */
 function init() {
-    transactions.forEach(renderRow);
+    renderRows();
 }
 
 // Inicia a aplicação
